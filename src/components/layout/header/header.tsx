@@ -92,12 +92,15 @@ const AppHeader = observer(() => {
                     </Button>
                     <Button
     primary
+    color="blue" // If the Button component supports a color prop
+    className="bg-blue-500 text-white" // Tailwind CSS classes for a blue button
     onClick={() => {
         window.open("https://track.deriv.me/_SBDSiGetH55qC5mQXGs4IWNd7ZgqdRLk/1/");
     }}
 >
-    <Localize i18n_default_text="Sign Up" />
+    <Localize i18n_default_text="Join Now" />
 </Button>
+
 
                 </div>
             );
