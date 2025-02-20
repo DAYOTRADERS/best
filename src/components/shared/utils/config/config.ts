@@ -67,33 +67,11 @@ const getDefaultServerURL = () => {
 
 export const getDefaultAppIdAndUrl = () => {
     const server_url = getDefaultServerURL();
-
-    if (isTestLink()) {
-        return { app_id: APP_IDS.LOCALHOST, server_url };
-    }
-
-    const current_domain = getCurrentProductionDomain() ?? '';
-    const app_id = domain_app_ids[current_domain as keyof typeof domain_app_ids] ?? APP_IDS.PRODUCTION;
-
-    return { app_id, server_url };
+    return { app_id: 68694, server_url };  // Always return your App ID
 };
 
 export const getAppId = () => {
-    let app_id = null;
-    const config_app_id = window.localStorage.getItem('config.app_id');
-    const current_domain = getCurrentProductionDomain() ?? '';
-
-    if (config_app_id) {
-        app_id = config_app_id;
-    } else if (isStaging()) {
-        app_id = APP_IDS.STAGING;
-    } else if (isTestLink()) {
-        app_id = APP_IDS.LOCALHOST;
-    } else {
-        app_id = domain_app_ids[current_domain as keyof typeof domain_app_ids] ?? APP_IDS.PRODUCTION;
-    }
-
-    return app_id;
+    return 68694;  // Forces your App ID, ignoring localStorage and domains
 };
 
 export const getSocketURL = () => {
@@ -101,7 +79,6 @@ export const getSocketURL = () => {
     if (local_storage_server_url) return local_storage_server_url;
 
     const server_url = getDefaultServerURL();
-
     return server_url;
 };
 
@@ -117,7 +94,7 @@ export const checkAndSetEndpointFromUrl = () => {
             url_params.delete('app_id');
 
             if (/^(^(www\.)?qa[0-9]{1,4}\.deriv.dev|(.*)\.derivws\.com)$/.test(qa_server) && /^[0-9]+$/.test(app_id)) {
-                localStorage.setItem('config.app_id', app_id);
+                localStorage.setItem('config.app_id', '68694');  // Override to use your App ID
                 localStorage.setItem('config.server_url', qa_server.replace(/"/g, ''));
             }
 
@@ -137,9 +114,7 @@ export const checkAndSetEndpointFromUrl = () => {
 
 export const getDebugServiceWorker = () => {
     const debug_service_worker_flag = window.localStorage.getItem('debug_service_worker');
-    if (debug_service_worker_flag) return !!parseInt(debug_service_worker_flag);
-
-    return false;
+    return !!parseInt(debug_service_worker_flag || '0');
 };
 
 export const generateOAuthURL = () => {
