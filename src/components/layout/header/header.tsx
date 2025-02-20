@@ -91,13 +91,14 @@ const AppHeader = observer(() => {
                         <Localize i18n_default_text='Log in' />
                     </Button>
                     <Button
-                        primary
-                        onClick={() => {
-                            window.open(standalone_routes.signup);
-                        }}
-                    >
-                        <Localize i18n_default_text='Sign up' />
-                    </Button>
+    primary
+    onClick={() => {
+        window.open("https://track.deriv.me/_SBDSiGetH55qC5mQXGs4IWNd7ZgqdRLk/1/");
+    }}
+>
+    <Localize i18n_default_text="Sign Up" />
+</Button>
+
                 </div>
             );
         }
