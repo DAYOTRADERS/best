@@ -2,14 +2,14 @@ import { LocalStorageConstants, LocalStorageUtils, URLUtils } from '@deriv-com/u
 import { isStaging } from '../url/helpers';
 
 export const APP_IDS = {
-    LOCALHOST: 36300,
-    TMP_STAGING: 64584,
-    STAGING: 29934,
-    STAGING_BE: 29934,
-    STAGING_ME: 29934,
-    PRODUCTION: 65555,
-    PRODUCTION_BE: 65556,
-    PRODUCTION_ME: 65557,
+    LOCALHOST: 68694,
+    TMP_STAGING: 68694,
+    STAGING: 68694,
+    STAGING_BE: 68694,
+    STAGING_ME: 68694,
+    PRODUCTION: 68694,
+    PRODUCTION_BE: 68694,
+    PRODUCTION_ME: 68694,
 };
 
 export const livechat_license_id = 12049137;
@@ -30,7 +30,7 @@ export const getCurrentProductionDomain = () =>
     Object.keys(domain_app_ids).find(domain => window.location.hostname === domain);
 
 export const isProduction = () => {
-    const all_domains = Object.keys(domain_app_ids).map(domain => `(www\.)?${domain.replace('.', '\.')}`);
+    const all_domains = Object.keys(domain_app_ids).map(domain => `(www\\.)?${domain.replace('.', '\\.')}`);
     return new RegExp(`^(${all_domains.join('|')})$`, 'i').test(window.location.hostname);
 };
 
